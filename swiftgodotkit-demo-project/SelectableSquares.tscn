@@ -1,0 +1,88 @@
+[gd_scene load_steps=14 format=3 uid="uid://crfld0rtef5ge"]
+
+[ext_resource type="PackedScene" uid="uid://dgtqpca2xvdgk" path="res://ui/HUD.tscn" id="1_ff4w1"]
+[ext_resource type="Script" uid="uid://rpgeumq0n05a" path="res://selectable_squares.gd" id="1_yy6ht"]
+[ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://camera_motion.gd" id="2_s0mlu"]
+[ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://panel_indicator.gd" id="3_48dcl"]
+[ext_resource type="Script" uid="uid://6ywgjdkbdg6e" path="res://panel_manager.gd" id="5_iir56"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_haekb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ff4w1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0mlu"]
+albedo_color = Color(0, 0.561681, 0.254149, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yy6ht"]
+albedo_color = Color(0.900639, 0, 0.381258, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sysu"]
+albedo_color = Color(0.27451, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_48dcl"]
+albedo_color = Color(1, 1, 0.0313726, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_iir56"]
+
+[sub_resource type="Environment" id="Environment_abvlt"]
+glow_enabled = true
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_yy6ht")
+
+[node name="Hud" parent="." instance=ExtResource("1_ff4w1")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+mesh = SubResource("PlaneMesh_haekb")
+
+[node name="GreenPanel" type="MeshInstance3D" parent="." groups=["panels"]]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.25, 0)
+mesh = SubResource("BoxMesh_ff4w1")
+surface_material_override/0 = SubResource("StandardMaterial3D_s0mlu")
+script = ExtResource("3_48dcl")
+angle_from = 70.0
+angle_to = 110.0
+
+[node name="PinkPanel" type="MeshInstance3D" parent="." groups=["panels"]]
+transform = Transform3D(-4.37114e-09, 0, 1, 0, 1, 0, -0.1, 0, -4.37114e-08, 0, 1.25, -2)
+mesh = SubResource("BoxMesh_ff4w1")
+surface_material_override/0 = SubResource("StandardMaterial3D_yy6ht")
+script = ExtResource("3_48dcl")
+angle_from = 340.0
+angle_to = 20.0
+
+[node name="BluePanel" type="MeshInstance3D" parent="." groups=["panels"]]
+transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.25, 0)
+mesh = SubResource("BoxMesh_ff4w1")
+surface_material_override/0 = SubResource("StandardMaterial3D_0sysu")
+script = ExtResource("3_48dcl")
+angle_from = 250.0
+angle_to = 290.0
+
+[node name="YellowPanel" type="MeshInstance3D" parent="." groups=["panels"]]
+transform = Transform3D(-4.37114e-09, 0, 1, 0, 1, 0, -0.1, 0, -4.37114e-08, 0, 1.25, 2)
+mesh = SubResource("BoxMesh_ff4w1")
+surface_material_override/0 = SubResource("StandardMaterial3D_48dcl")
+script = ExtResource("3_48dcl")
+angle_from = 160.0
+angle_to = 200.0
+
+[node name="Character" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_iir56")
+
+[node name="Camera3D" type="Camera3D" parent="Character"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600811, 0)
+script = ExtResource("2_s0mlu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Character/Camera3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.362877, 0.931837, 0, -0.931837, 0.362877, 0, 4.93375, 1.6956)
+
+[node name="PanelManager" type="Node" parent="." node_paths=PackedStringArray("camera")]
+script = ExtResource("5_iir56")
+camera = NodePath("../Character/Camera3D")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_abvlt")

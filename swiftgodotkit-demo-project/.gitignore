@@ -1,0 +1,15 @@
+nupkg/
+
+coverage/*
+!coverage/.gdignore
+
+.godot/
+!.godot/extension_list.cfg
+bin/
+obj/
+.generated/
+.vs/
+.DS_Store
+
+*.translation
+*.old
