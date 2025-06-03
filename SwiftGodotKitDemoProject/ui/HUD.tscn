@@ -10,14 +10,14 @@ default_font_size = 50
 [node name="Hud" type="CanvasLayer"]
 
 [node name="Joystick" parent="." instance=ExtResource("1_1x8ju")]
-position = Vector2(833, 1891)
+position = Vector2(851, 1737)
 scale = Vector2(3, 3)
 
 [node name="SelectButton" type="Button" parent="."]
-offset_left = 296.0
-offset_top = 2115.0
-offset_right = 828.0
-offset_bottom = 2200.0
+offset_left = 303.0
+offset_top = 1944.0
+offset_right = 835.0
+offset_bottom = 2029.0
 theme = SubResource("Theme_1x8ju")
 theme_override_styles/normal = SubResource("StyleBoxFlat_aaqae")
 text = "Select Panel"

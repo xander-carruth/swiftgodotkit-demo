@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wcgiq24agu33"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_58gnk"]
+
+[node name="CharacterGameplay" type="Node3D"]
+
+[node name="Land" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_58gnk")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]

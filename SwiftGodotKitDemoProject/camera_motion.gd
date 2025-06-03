@@ -8,8 +8,9 @@ var _yaw_deg: float = 0.0
 var _pitch_deg: float = 0.0 # clamped to ±60 °
 
 # called by Main.gd whenever the knob moves
-func set_stick(dir: Vector2) -> void:
-	_dir = dir
+func set_stick(id: String, dir: Vector2) -> void:
+	if id == "SSRotation":
+		_dir = dir
 
 func _process(delta: float) -> void:
 	if _dir == Vector2.ZERO:
