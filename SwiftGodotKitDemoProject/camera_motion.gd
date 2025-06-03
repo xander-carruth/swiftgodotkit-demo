@@ -1,22 +1,14 @@
-extends Camera3D
+extends MeshInstance3D
 signal yaw_changed(yaw: float)
+@onready var head = $Head
 
-@export var yaw_speed := 30.0 # °/s at full deflection
-@export var pitch_speed := -30.0 # °/s
-var _dir: Vector2 = Vector2.ZERO # last stick value
-var _yaw_deg: float = 0.0
-var _pitch_deg: float = 0.0 # clamped to ±60 °
+const SENSITIVITY = 0.10
 
-# called by Main.gd whenever the knob moves
-func set_stick(id: String, dir: Vector2) -> void:
-	if id == "SSRotation":
-		_dir = dir
-
-func _process(delta: float) -> void:
-	if _dir == Vector2.ZERO:
-		return
-
-	_yaw_deg -= _dir.x * yaw_speed * delta
-	_pitch_deg = clamp(_pitch_deg + _dir.y * pitch_speed * delta, -60.0, 60.0)
-	rotation_degrees = Vector3(_pitch_deg, _yaw_deg, 0.0)
-	yaw_changed.emit(fposmod(_yaw_deg, 360.0))
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
+		head.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
+		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-45), deg_to_rad(60))
+		var yaw = fposmod(rotation_degrees.y, 360.0)
+		yaw_changed.emit(yaw)
+		print(yaw)

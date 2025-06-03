@@ -1,10 +1,73 @@
-[gd_scene load_steps=2 format=3 uid="uid://wcgiq24agu33"]
+[gd_scene load_steps=12 format=3 uid="uid://wcgiq24agu33"]
+
+[ext_resource type="PackedScene" uid="uid://c7glvstpp06ak" path="res://character.tscn" id="1_3ksj4"]
+[ext_resource type="Script" uid="uid://d3tkjykkbcgt0" path="res://character.gd" id="2_lwmuc"]
+[ext_resource type="PackedScene" uid="uid://yby1jaejm40t" path="res://ui/PlayerHUD.tscn" id="3_lwmuc"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lwmuc"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_r0lkj"]
+sky_material = SubResource("ProceduralSkyMaterial_lwmuc")
+
+[sub_resource type="Environment" id="Environment_jlvqi"]
+background_mode = 2
+sky = SubResource("Sky_r0lkj")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_58gnk"]
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3ksj4"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ws2ku"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ib6uv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g7dy1"]
+albedo_color = Color(0.886275, 0.168627, 0.0627451, 1)
+
 [node name="CharacterGameplay" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jlvqi")
+
 [node name="Land" type="MeshInstance3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 mesh = SubResource("PlaneMesh_58gnk")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="Land"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Land/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3ksj4")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Land"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -0.45, 0.1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Land/StaticBody3D2"]
+shape = SubResource("BoxShape3D_ws2ku")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Land/StaticBody3D2"]
+mesh = SubResource("BoxMesh_ib6uv")
+surface_material_override/0 = SubResource("StandardMaterial3D_g7dy1")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Land"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.594204, 0.1, 0.580827)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Land/StaticBody3D3"]
+shape = SubResource("BoxShape3D_ws2ku")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Land/StaticBody3D3"]
+mesh = SubResource("BoxMesh_ib6uv")
+surface_material_override/0 = SubResource("StandardMaterial3D_g7dy1")
+
+[node name="Character" parent="." instance=ExtResource("1_3ksj4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.818796, 0)
+script = ExtResource("2_lwmuc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.237584, 0.971367, 0, -0.971367, 0.237584, 0, 3.02057, 0)
+
+[node name="PlayerHud" parent="." instance=ExtResource("3_lwmuc")]

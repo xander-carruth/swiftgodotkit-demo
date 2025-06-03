@@ -5,4 +5,5 @@ extends Node3D
 
 
 func _ready() -> void:
-	joystick.moved.connect(camera.set_stick)
+	# do nothing
+	print("ready")

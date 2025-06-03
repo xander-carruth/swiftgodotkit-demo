@@ -1,14 +1,14 @@
 extends Node
 signal color_chosen(colour: String)
 
-@export var camera: Node # drag the Camera3D
+@export var character: Node # drag the Camera3D
 
 @onready var select_button := $"../Hud/SelectButton"
 
 var _active: Node = null
 
 func _ready():
-	camera.yaw_changed.connect(_on_orient)
+	character.yaw_changed.connect(_on_orient)
 	select_button.pressed.connect(_on_select)
 
 func _on_orient(yaw: float) -> void:

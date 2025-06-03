@@ -1,10 +1,23 @@
-[gd_scene load_steps=14 format=3 uid="uid://crfld0rtef5ge"]
+[gd_scene load_steps=16 format=3 uid="uid://crfld0rtef5ge"]
 
 [ext_resource type="PackedScene" uid="uid://dgtqpca2xvdgk" path="res://ui/HUD.tscn" id="1_ff4w1"]
 [ext_resource type="Script" uid="uid://rpgeumq0n05a" path="res://selectable_squares.gd" id="1_yy6ht"]
 [ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://camera_motion.gd" id="2_s0mlu"]
 [ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://panel_indicator.gd" id="3_48dcl"]
 [ext_resource type="Script" uid="uid://6ywgjdkbdg6e" path="res://panel_manager.gd" id="5_iir56"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_48dcl"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_iir56"]
+sky_material = SubResource("ProceduralSkyMaterial_48dcl")
+
+[sub_resource type="Environment" id="Environment_abvlt"]
+background_mode = 2
+sky = SubResource("Sky_iir56")
+tonemap_mode = 2
+glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_haekb"]
 
@@ -24,11 +37,15 @@ albedo_color = Color(1, 1, 0.0313726, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iir56"]
 
-[sub_resource type="Environment" id="Environment_abvlt"]
-glow_enabled = true
-
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_yy6ht")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_abvlt")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
 
 [node name="Hud" parent="." instance=ExtResource("1_ff4w1")]
 
@@ -70,19 +87,15 @@ angle_to = 200.0
 
 [node name="Character" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_iir56")
-
-[node name="Camera3D" type="Camera3D" parent="Character"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600811, 0)
 script = ExtResource("2_s0mlu")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Character/Camera3D"]
+[node name="Head" type="Node3D" parent="Character"]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.362877, 0.931837, 0, -0.931837, 0.362877, 0, 4.93375, 1.6956)
+[node name="Camera3D" type="Camera3D" parent="Character/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600811, 0)
 
-[node name="PanelManager" type="Node" parent="." node_paths=PackedStringArray("camera")]
+[node name="PanelManager" type="Node" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("5_iir56")
-camera = NodePath("../Character/Camera3D")
+character = NodePath("../Character")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_abvlt")
+[node name="CanvasLayer" type="CanvasLayer" parent="."]

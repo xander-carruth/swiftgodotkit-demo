@@ -7,12 +7,8 @@ default_font_size = 50
 
 [node name="PlayerHud" type="CanvasLayer"]
 
-[node name="RotationJoystick" parent="." instance=ExtResource("1_3j41j")]
-position = Vector2(856, 1773)
-scale = Vector2(3, 3)
-
 [node name="PositionJoystick" parent="." instance=ExtResource("1_3j41j")]
-position = Vector2(207, 1339)
+position = Vector2(899, 1712)
 scale = Vector2(3, 3)
 
 [node name="Button" type="Button" parent="."]

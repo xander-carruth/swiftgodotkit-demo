@@ -1,6 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dgtqpca2xvdgk"]
-
-[ext_resource type="PackedScene" uid="uid://bnet6rhsnjtds" path="res://ui/joystick.tscn" id="1_1x8ju"]
+[gd_scene load_steps=3 format=3 uid="uid://dgtqpca2xvdgk"]
 
 [sub_resource type="Theme" id="Theme_1x8ju"]
 default_font_size = 50
@@ -8,10 +6,6 @@ default_font_size = 50
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaqae"]
 
 [node name="Hud" type="CanvasLayer"]
-
-[node name="Joystick" parent="." instance=ExtResource("1_1x8ju")]
-position = Vector2(851, 1737)
-scale = Vector2(3, 3)
 
 [node name="SelectButton" type="Button" parent="."]
 offset_left = 303.0
