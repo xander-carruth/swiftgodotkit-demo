@@ -35,7 +35,7 @@ struct GameStartView: View {
         }
 
         // 2. Instance the scene and put it *in the viewport*
-        if let packed = ResourceLoader.load(path: "res://CharacterGameplay.tscn") as? PackedScene {
+        if let packed = ResourceLoader.load(path: "res://src/CharacterGameplay/CharacterGameplay.tscn") as? PackedScene {
             vp.addChild(node: packed.instantiate())
         }
     }

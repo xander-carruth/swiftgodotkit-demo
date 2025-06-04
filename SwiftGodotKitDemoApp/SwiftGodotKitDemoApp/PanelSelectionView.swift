@@ -41,7 +41,7 @@ struct PanelSelectionView: View {
         }
 
         // 2. Instance the scene and put it *in the viewport*
-        if let packed = ResourceLoader.load(path: "res://SelectableSquares.tscn") as? PackedScene {
+        if let packed = ResourceLoader.load(path: "res://src/SelectableSquares/SelectableSquares.tscn") as? PackedScene {
             vp.addChild(node: packed.instantiate())
         }
     }

@@ -4,6 +4,7 @@ project.xcworkspace/xcuserdata/
 /node_modules
 /package.json
 Pods/
+**/xcuserdata/**/*
 .DS_Store
 
 #amplify-do-not-edit-begin
