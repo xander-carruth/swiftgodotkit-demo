@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://wcgiq24agu33"]
 
-[ext_resource type="PackedScene" uid="uid://c7glvstpp06ak" path="res://character.tscn" id="1_3ksj4"]
-[ext_resource type="Script" uid="uid://d3tkjykkbcgt0" path="res://character.gd" id="2_lwmuc"]
+[ext_resource type="PackedScene" uid="uid://c7glvstpp06ak" path="res://Character.tscn" id="1_3ksj4"]
+[ext_resource type="Script" uid="uid://d3tkjykkbcgt0" path="res://Character.gd" id="2_lwmuc"]
 [ext_resource type="PackedScene" uid="uid://yby1jaejm40t" path="res://ui/PlayerHUD.tscn" id="3_lwmuc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lwmuc"]

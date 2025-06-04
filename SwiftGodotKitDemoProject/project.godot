@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SwiftGodotKit Demo Project"
-run/main_scene="uid://bsenm5uirinip"
+run/main_scene="uid://crfld0rtef5ge"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

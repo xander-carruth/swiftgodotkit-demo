@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://crfld0rtef5ge"]
+[gd_scene load_steps=15 format=3 uid="uid://crfld0rtef5ge"]
 
 [ext_resource type="PackedScene" uid="uid://dgtqpca2xvdgk" path="res://ui/HUD.tscn" id="1_ff4w1"]
-[ext_resource type="Script" uid="uid://rpgeumq0n05a" path="res://selectable_squares.gd" id="1_yy6ht"]
-[ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://camera_motion.gd" id="2_s0mlu"]
-[ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://panel_indicator.gd" id="3_48dcl"]
-[ext_resource type="Script" uid="uid://6ywgjdkbdg6e" path="res://panel_manager.gd" id="5_iir56"]
+[ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://CameraMotion.gd" id="2_s0mlu"]
+[ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://PanelIndicator.gd" id="3_48dcl"]
+[ext_resource type="Script" uid="uid://6ywgjdkbdg6e" path="res://PanelManager.gd" id="5_iir56"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_48dcl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,7 +37,7 @@ albedo_color = Color(1, 1, 0.0313726, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iir56"]
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_yy6ht")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000896573, 0, 0.000990868)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_abvlt")
