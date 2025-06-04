@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://crfld0rtef5ge"]
+[gd_scene load_steps=15 format=3 uid="uid://crfld0rtef5ge"]
 
-[ext_resource type="PackedScene" uid="uid://dgtqpca2xvdgk" path="res://ui/HUD.tscn" id="1_ff4w1"]
-[ext_resource type="Script" uid="uid://rpgeumq0n05a" path="res://selectable_squares.gd" id="1_yy6ht"]
-[ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://camera_motion.gd" id="2_s0mlu"]
-[ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://panel_indicator.gd" id="3_48dcl"]
-[ext_resource type="Script" uid="uid://6ywgjdkbdg6e" path="res://panel_manager.gd" id="5_iir56"]
+[ext_resource type="PackedScene" uid="uid://dgtqpca2xvdgk" path="res://src/SelectableSquares/HUD.tscn" id="1_ok3ug"]
+[ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://src/SelectableSquares/PanelIndicator.gd" id="2_fm68c"]
+[ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://src/SelectableSquares/CameraMotion.gd" id="3_tkujn"]
+[ext_resource type="Script" uid="uid://6ywgjdkbdg6e" path="res://src/SelectableSquares/PanelManager.gd" id="4_agdef"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_48dcl"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -38,7 +37,7 @@ albedo_color = Color(1, 1, 0.0313726, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iir56"]
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_yy6ht")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000896573, 0, 0.000990868)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_abvlt")
@@ -47,7 +46,7 @@ environment = SubResource("Environment_abvlt")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Hud" parent="." instance=ExtResource("1_ff4w1")]
+[node name="Hud" parent="." instance=ExtResource("1_ok3ug")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
@@ -57,7 +56,7 @@ mesh = SubResource("PlaneMesh_haekb")
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.25, 0)
 mesh = SubResource("BoxMesh_ff4w1")
 surface_material_override/0 = SubResource("StandardMaterial3D_s0mlu")
-script = ExtResource("3_48dcl")
+script = ExtResource("2_fm68c")
 angle_from = 70.0
 angle_to = 110.0
 
@@ -65,7 +64,7 @@ angle_to = 110.0
 transform = Transform3D(-4.37114e-09, 0, 1, 0, 1, 0, -0.1, 0, -4.37114e-08, 0, 1.25, -2)
 mesh = SubResource("BoxMesh_ff4w1")
 surface_material_override/0 = SubResource("StandardMaterial3D_yy6ht")
-script = ExtResource("3_48dcl")
+script = ExtResource("2_fm68c")
 angle_from = 340.0
 angle_to = 20.0
 
@@ -73,7 +72,7 @@ angle_to = 20.0
 transform = Transform3D(0.1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.25, 0)
 mesh = SubResource("BoxMesh_ff4w1")
 surface_material_override/0 = SubResource("StandardMaterial3D_0sysu")
-script = ExtResource("3_48dcl")
+script = ExtResource("2_fm68c")
 angle_from = 250.0
 angle_to = 290.0
 
@@ -81,13 +80,13 @@ angle_to = 290.0
 transform = Transform3D(-4.37114e-09, 0, 1, 0, 1, 0, -0.1, 0, -4.37114e-08, 0, 1.25, 2)
 mesh = SubResource("BoxMesh_ff4w1")
 surface_material_override/0 = SubResource("StandardMaterial3D_48dcl")
-script = ExtResource("3_48dcl")
+script = ExtResource("2_fm68c")
 angle_from = 160.0
 angle_to = 200.0
 
 [node name="Character" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_iir56")
-script = ExtResource("2_s0mlu")
+script = ExtResource("3_tkujn")
 
 [node name="Head" type="Node3D" parent="Character"]
 
@@ -95,7 +94,7 @@ script = ExtResource("2_s0mlu")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.600811, 0)
 
 [node name="PanelManager" type="Node" parent="." node_paths=PackedStringArray("character")]
-script = ExtResource("5_iir56")
+script = ExtResource("4_agdef")
 character = NodePath("../Character")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

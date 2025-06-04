@@ -1,16 +1,16 @@
 extends CharacterBody3D
 @onready var HEAD = $Head
 
-const SENSITIVITY = 0.10
+const SENSITIVITY = 0.05
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
 func _input(event):
-	if event is InputEventMouseMotion:
+	if event is InputEventScreenDrag:
 		rotate_y(deg_to_rad(-event.relative.x * SENSITIVITY))
 		HEAD.rotate_x(deg_to_rad(-event.relative.y * SENSITIVITY))
 
-		HEAD.rotation.x = clamp(HEAD.rotation.x, deg_to_rad(-45), deg_to_rad(60))
+		HEAD.rotation.x = clamp(HEAD.rotation.x, deg_to_rad(-80), deg_to_rad(60))
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

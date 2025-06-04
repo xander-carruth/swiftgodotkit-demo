@@ -11,6 +11,8 @@ import SwiftGodot
 
 @main
 struct SwiftGodotKitDemoAppApp: App {
+    @StateObject private var godotApp = GodotApp(packFile: "demo.pck")
+    
     init() {
         let appearance = UITabBar.appearance()
         appearance.barTintColor = .white
@@ -27,6 +29,7 @@ struct SwiftGodotKitDemoAppApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(\.godotApp, godotApp)
         }
     }
 }

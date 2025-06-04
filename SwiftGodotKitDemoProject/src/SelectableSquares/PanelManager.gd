@@ -28,7 +28,8 @@ func _on_select() -> void:
 		var color_name := _active.name.replace("Panel", "")
 		print("Player chose: ", color_name)
 		var singleton = Engine.get_singleton("GodotSwiftMessenger")
-		singleton.panel_selected.emit(color_name)
+		if singleton != null:
+			singleton.panel_selected.emit(color_name)
 
 func _within_window(yaw: float, from: float, to: float) -> bool:
 	if from <= to:
