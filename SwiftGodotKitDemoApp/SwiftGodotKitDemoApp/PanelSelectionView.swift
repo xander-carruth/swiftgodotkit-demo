@@ -15,12 +15,23 @@ struct PanelColor: Identifiable {
 }
 
 struct PanelSelectionView: View {
-    @State private var godotApp: GodotApp = GodotApp(packFile: "demo.pck")
+    @SwiftUI.Environment(\.godotApp) private var godotApp: GodotApp?
     @State private var selectedColor: PanelColor?
+    
+    let squareCallback = { (subwindow: Window) -> () in
+        guard let packed = ResourceLoader.load(path: "res://SelectableSquares.tscn") as? PackedScene else {
+            return
+        }
+        
+        let gameRoot = packed.instantiate()
+        subwindow.addChild(node: gameRoot)
+    }
+    
+    
     var body: some View {
         VStack {
             GodotAppView()
-                .environment(\.godotApp, godotApp)
+//            GodotWindow(callback: squareCallback)
         }
         .sheet(item: $selectedColor) { panelColor in
             ColorSheetView(colorName: panelColor.name)
@@ -32,8 +43,4 @@ struct PanelSelectionView: View {
         }
         .ignoresSafeArea()
     }
-}
-
-#Preview {
-    PanelSelectionView()
 }

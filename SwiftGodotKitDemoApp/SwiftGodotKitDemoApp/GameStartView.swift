@@ -6,13 +6,26 @@
 //
 
 import SwiftUI
+import SwiftGodot
+import SwiftGodotKit
 
 struct GameStartView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @SwiftUI.Environment(\.godotApp) private var godotApp: GodotApp?
+    
+    let gameCallback = { (subwindow: Window) -> () in
+        guard let packed = ResourceLoader.load(path: "res://SelectableSquares.tscn") as? PackedScene else {
+            return
+        }
+        
+        let gameRoot = packed.instantiate()
+        subwindow.addChild(node: gameRoot)
     }
-}
-
-#Preview {
-    GameStartView()
+    
+    var body: some View {
+        VStack {
+            GodotWindow(callback: gameCallback)
+            Text("hello")
+        }
+        .ignoresSafeArea()
+    }
 }

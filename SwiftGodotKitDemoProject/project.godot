@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="SwiftGodotKit Demo Project"
-run/main_scene="uid://wcgiq24agu33"
+run/main_scene="uid://bsenm5uirinip"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -24,6 +24,11 @@ window/stretch/mode="viewport"
 [dotnet]
 
 project/assembly_name="Salonn Demo"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+pointing/emulate_mouse_from_touch=false
 
 [rendering]
 
