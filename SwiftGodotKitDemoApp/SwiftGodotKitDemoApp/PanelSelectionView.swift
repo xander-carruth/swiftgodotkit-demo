@@ -20,7 +20,7 @@ struct PanelSelectionView: View {
     
     let squareCallback: (Window) -> Void = { w in
         for child in w.getChildren() {
-            w.removeChild(node: (child as! Node))
+            w.removeChild(node: child!)
         }
         
         // 1. SubViewport + container so it actually shows up
