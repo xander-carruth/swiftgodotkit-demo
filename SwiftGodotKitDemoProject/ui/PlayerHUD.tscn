@@ -1,15 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://yby1jaejm40t"]
 
-[ext_resource type="PackedScene" uid="uid://bnet6rhsnjtds" path="res://ui/joystick.tscn" id="1_3j41j"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_3j41j"]
 
 [sub_resource type="Theme" id="Theme_3j41j"]
 default_font_size = 50
 
 [node name="PlayerHud" type="CanvasLayer"]
-
-[node name="PositionJoystick" parent="." instance=ExtResource("1_3j41j")]
-position = Vector2(899, 1712)
-scale = Vector2(3, 3)
 
 [node name="Button" type="Button" parent="."]
 offset_left = 792.0
@@ -18,3 +14,9 @@ offset_right = 944.0
 offset_bottom = 1432.0
 theme = SubResource("Theme_3j41j")
 text = "Settings"
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("1_3j41j")]
+offset_left = 738.0
+offset_top = -832.0
+offset_right = 1038.0
+offset_bottom = -532.0
