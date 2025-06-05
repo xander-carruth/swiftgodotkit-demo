@@ -1,26 +1,20 @@
 //
-//  ContentView.swift
+//  CharacterGameView.swift
 //  SwiftGodotKitDemoApp
 //
-//  Created by Xander Carruth on 6/2/25.
+//  Created by Xander Carruth on 6/5/25.
 //
 
 import SwiftUI
 import SwiftGodot
 import SwiftGodotKit
 
-struct PanelColor: Identifiable {
-    let id = UUID()
-    let name: String
-}
-
-struct PanelSelectionView: View {
+struct CharacterGameView: View {
     @SwiftUI.Environment(\.godotApp) private var godotApp: GodotApp?
-    @State private var selectedColor: PanelColor?
     
-    let squareCallback: (Window) -> Void = { w in
+    let gameCallback: (Window) -> Void = { w in
         for child in w.getChildren() {
-            w.removeChild(node: child!)
+            w.removeChild(node: (child as! Node))
         }
         
         // 1. SubViewport + container so it actually shows up
@@ -41,30 +35,15 @@ struct PanelSelectionView: View {
         }
 
         // 2. Instance the scene and put it *in the viewport*
-        if let packed = ResourceLoader.load(path: "res://src/SelectableSquares/SelectableSquares.tscn") as? PackedScene {
+        if let packed = ResourceLoader.load(path: "res://src/CharacterGameplay/CharacterGameplay.tscn") as? PackedScene {
             vp.addChild(node: packed.instantiate())
         }
     }
-
-    
     
     var body: some View {
         VStack {
-            GodotWindow(callback: squareCallback)
-        }
-        .background(
-            GodotAppView()
-                .opacity(0)
-                .frame(width: 0, height: 0)
-                .background(Color.red)
-        )
-        .sheet(item: $selectedColor) { panelColor in
-            ColorSheetView(colorName: panelColor.name)
-        }
-        .onAppear {
-            GodotSwiftMessenger.shared.panelSelected.connect { viewColor in
-                selectedColor = PanelColor(name: viewColor)
-            }
+            GodotWindow(callback: gameCallback)
+//            Text("Hello")
         }
         .ignoresSafeArea()
     }
