@@ -1,17 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgtqpca2xvdgk"]
 
-[sub_resource type="Theme" id="Theme_1x8ju"]
-default_font_size = 50
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aaqae"]
+[ext_resource type="Texture2D" uid="uid://dsfegxmyvk765" path="res://src/RotatingCube/BlackTexture.png" id="1_s6025"]
+[ext_resource type="Texture2D" uid="uid://cef60b2s3pfnk" path="res://src/RotatingCube/GrayTexture.png" id="2_nk1xj"]
 
 [node name="Hud" type="CanvasLayer"]
 
-[node name="SelectButton" type="Button" parent="."]
-offset_left = 303.0
-offset_top = 1944.0
-offset_right = 835.0
-offset_bottom = 2029.0
-theme = SubResource("Theme_1x8ju")
-theme_override_styles/normal = SubResource("StyleBoxFlat_aaqae")
+[node name="SelectButton" type="TouchScreenButton" parent="."]
+position = Vector2(365, 2007)
+scale = Vector2(1.54688, 0.40625)
+texture_normal = ExtResource("1_s6025")
+texture_pressed = ExtResource("2_nk1xj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 408.0
+offset_top = 2025.0
+offset_right = 698.0
+offset_bottom = 2094.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
 text = "Select Panel"

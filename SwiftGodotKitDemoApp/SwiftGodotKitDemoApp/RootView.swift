@@ -21,9 +21,11 @@ struct RootView: View {
         NavigationStack(path: $navModel.path) {
             TabView {
                 PanelSelectionView()
-                    .tabItem { Label("Panel Selection", systemImage: "2.circle") }
+                    .tabItem { Label("Panel", systemImage: "1.circle") }
                 GameStartView()
-                    .tabItem { Label("Start", systemImage: "1.circle") }
+                    .tabItem { Label("Game", systemImage: "2.circle") }
+                RotatingCubeView()
+                    .tabItem { Label("Cube", systemImage: "3.circle") }
             }
             .tint(.indigo)
             // push destination

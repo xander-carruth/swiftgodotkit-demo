@@ -1,26 +1,22 @@
 //
-//  ContentView.swift
+//  RotatingSquareView.swift
 //  SwiftGodotKitDemoApp
 //
-//  Created by Xander Carruth on 6/2/25.
+//  Created by Xander Carruth on 6/5/25.
 //
 
 import SwiftUI
 import SwiftGodot
 import SwiftGodotKit
 
-struct PanelColor: Identifiable {
-    let id = UUID()
-    let name: String
-}
-
-struct PanelSelectionView: View {
+struct RotatingCubeView: View {
     @SwiftUI.Environment(\.godotApp) private var godotApp: GodotApp?
-    @State private var selectedColor: PanelColor?
     
-    let squareCallback: (Window) -> Void = { w in
+    @State private var colorChangeCount: Int = 0
+    
+    let rotatingCubeCallback: (Window) -> Void = { w in
         for child in w.getChildren() {
-            w.removeChild(node: child!)
+            w.removeChild(node: (child as! Node))
         }
         
         // 1. SubViewport + container so it actually shows up
@@ -28,7 +24,7 @@ struct PanelSelectionView: View {
         print(w.size)
         vp.size = w.size                  // or a fixed Vector2i
         vp.world3d = World3D()
-
+        
         let vpContainer = SubViewportContainer()
         vpContainer.setAnchorsPreset(.fullRect)
         vpContainer.addChild(node: vp)
@@ -39,33 +35,21 @@ struct PanelSelectionView: View {
             guard let vp, let w else { return }
             vp.size = w.size
         }
-
+        
         // 2. Instance the scene and put it *in the viewport*
-        if let packed = ResourceLoader.load(path: "res://src/SelectableSquares/SelectableSquares.tscn") as? PackedScene {
+        if let packed = ResourceLoader.load(path: "res://src/RotatingCube/RotatingCube.tscn") as? PackedScene {
             vp.addChild(node: packed.instantiate())
         }
     }
-
-    
     
     var body: some View {
         VStack {
-            GodotWindow(callback: squareCallback)
-//            GodotAppView()
-        }
-        .background(
-            GodotAppView()
-                .opacity(0)
-                .frame(width: 0, height: 0)
-                .background(Color.red)
-        )
-        .sheet(item: $selectedColor) { panelColor in
-            ColorSheetView(colorName: panelColor.name)
-        }
-        .onAppear {
-            GodotSwiftMessenger.shared.panelSelected.connect { viewColor in
-                selectedColor = PanelColor(name: viewColor)
+            Button("Change Cube Color") {
+                colorChangeCount += 1
+                GodotSwiftMessenger.shared.changeCubeColor.emit(colorChangeCount)
             }
+            GodotWindow(callback: rotatingCubeCallback)
+            //            Text("Hello")
         }
         .ignoresSafeArea()
     }

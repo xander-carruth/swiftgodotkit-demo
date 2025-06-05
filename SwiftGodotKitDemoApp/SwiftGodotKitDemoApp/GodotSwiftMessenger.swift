@@ -11,4 +11,6 @@ import SwiftGodot
 class GodotSwiftMessenger: Object {
     public static let shared = GodotSwiftMessenger()
     @Signal var panelSelected: SignalWithArguments<String>
+    @Signal var gameEnded: SimpleSignal
+    @Signal var changeCubeColor: SignalWithArguments<Int>
 }

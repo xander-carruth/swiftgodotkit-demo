@@ -1,22 +1,89 @@
-[gd_scene load_steps=3 format=3 uid="uid://yby1jaejm40t"]
+[gd_scene load_steps=7 format=3 uid="uid://yby1jaejm40t"]
 
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://addons/virtual_joystick/virtual_joystick_scene.tscn" id="1_3j41j"]
-
-[sub_resource type="Theme" id="Theme_3j41j"]
-default_font_size = 50
+[ext_resource type="Script" uid="uid://b4muh8shaoetv" path="res://src/CharacterGameplay/PlayerHud.gd" id="1_s0hck"]
+[ext_resource type="Texture2D" uid="uid://dsfegxmyvk765" path="res://src/RotatingCube/BlackTexture.png" id="3_72v7s"]
+[ext_resource type="Texture2D" uid="uid://cef60b2s3pfnk" path="res://src/RotatingCube/GrayTexture.png" id="4_jcf1l"]
+[ext_resource type="Script" uid="uid://conbddta56rua" path="res://src/CharacterGameplay/SettingsMenu.gd" id="5_xhnen"]
+[ext_resource type="Texture2D" uid="uid://duda7kshq2ghq" path="res://src/RotatingCube/WhitePNG.png" id="6_h0xte"]
 
 [node name="PlayerHud" type="CanvasLayer"]
-
-[node name="Button" type="Button" parent="."]
-offset_left = 792.0
-offset_top = 1280.0
-offset_right = 944.0
-offset_bottom = 1432.0
-theme = SubResource("Theme_3j41j")
-text = "Settings"
+script = ExtResource("1_s0hck")
 
 [node name="Virtual Joystick" parent="." instance=ExtResource("1_3j41j")]
 offset_left = 738.0
 offset_top = -832.0
 offset_right = 1038.0
 offset_bottom = -532.0
+
+[node name="SettingsButton" type="TouchScreenButton" parent="."]
+position = Vector2(764, 1324)
+scale = Vector2(1.00781, 0.523438)
+texture_normal = ExtResource("3_72v7s")
+texture_pressed = ExtResource("4_jcf1l")
+
+[node name="SettingsText" type="Label" parent="."]
+offset_left = 801.0
+offset_top = 1355.0
+offset_right = 994.0
+offset_bottom = 1424.0
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+
+[node name="SettingsMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1079.0
+offset_bottom = 2330.0
+script = ExtResource("5_xhnen")
+
+[node name="ColorRect" type="ColorRect" parent="SettingsMenu"]
+layout_mode = 0
+offset_left = 130.0
+offset_top = 977.0
+offset_right = 1015.0
+offset_bottom = 1788.0
+color = Color(0, 0, 0, 0.568627)
+
+[node name="Title" type="Label" parent="SettingsMenu"]
+layout_mode = 2
+offset_left = 133.0
+offset_top = 981.0
+offset_right = 1019.0
+offset_bottom = 1077.0
+theme_override_font_sizes/font_size = 70
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="NavigateBackButton" type="TouchScreenButton" parent="SettingsMenu"]
+position = Vector2(306, 1174)
+scale = Vector2(2.06641, 0.527344)
+texture_normal = ExtResource("6_h0xte")
+texture_pressed = ExtResource("4_jcf1l")
+
+[node name="NavigateBackText" type="Label" parent="SettingsMenu"]
+layout_mode = 2
+offset_left = 281.0
+offset_top = 1203.0
+offset_right = 848.0
+offset_bottom = 1272.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Back"
+horizontal_alignment = 1
+
+[node name="CloseMenuButton" type="TouchScreenButton" parent="SettingsMenu"]
+position = Vector2(308, 1400)
+scale = Vector2(2.06641, 0.527344)
+texture_normal = ExtResource("6_h0xte")
+texture_pressed = ExtResource("4_jcf1l")
+
+[node name="CloseMenuText" type="Label" parent="SettingsMenu"]
+offset_left = 283.0
+offset_top = 1429.0
+offset_right = 850.0
+offset_bottom = 1498.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Close"
+horizontal_alignment = 1

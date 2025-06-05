@@ -14,11 +14,17 @@ struct GameStartView: View {
     
     var body: some View {
         VStack {
-//            GodotWindow(callback: gameCallback)
             Button("Start game") {
                 navModel.path.append(Route.godotOverlay)
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            GodotSwiftMessenger.shared.gameEnded.connect {
+                if !navModel.path.isEmpty {
+                    navModel.path.removeLast()
+                }
+            }
+        }
     }
 }
