@@ -1,4 +1,6 @@
 extends CharacterBody3D
+# Modified version of default CharacterBody3D template script
+
 @onready var HEAD = $Head
 
 const SENSITIVITY = 0.05
