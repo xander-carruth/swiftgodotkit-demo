@@ -5,6 +5,7 @@ extends MeshInstance3D
 
 func set_active(on: bool) -> void:
    var material = get_surface_override_material(0)
+   # Set material to glow
    if (on):
       material.emission_enabled = true
       material.emission_energy = 5.0

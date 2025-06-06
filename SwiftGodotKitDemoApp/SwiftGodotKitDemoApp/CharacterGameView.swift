@@ -14,27 +14,27 @@ struct CharacterGameView: View {
     
     let gameCallback: (Window) -> Void = { w in
         for child in w.getChildren() {
-            w.removeChild(node: (child as! Node))
+            w.removeChild(node: child!)
         }
         
-        // 1. SubViewport + container so it actually shows up
+        // Subviewport with its own World3D so it exist separately from the main world
         let vp = SubViewport()
-        print(w.size)
-        vp.size = w.size                  // or a fixed Vector2i
+        vp.size = w.size
         vp.world3d = World3D()
 
+        // Creat container across whole view
         let vpContainer = SubViewportContainer()
         vpContainer.setAnchorsPreset(.fullRect)
         vpContainer.addChild(node: vp)
+        w.addChild(node: vpContainer)
         
-        w.addChild(node: vpContainer)              // keep it in the tree
-        
+        // The viewport should be resized along with the window
         w.sizeChanged.connect { [weak vp, weak w] in
             guard let vp, let w else { return }
             vp.size = w.size
         }
 
-        // 2. Instance the scene and put it *in the viewport*
+        // Instance the scene and add to the viewport
         if let packed = ResourceLoader.load(path: "res://src/CharacterGameplay/CharacterGameplay.tscn") as? PackedScene {
             vp.addChild(node: packed.instantiate())
         }
@@ -43,7 +43,6 @@ struct CharacterGameView: View {
     var body: some View {
         VStack {
             GodotWindow(callback: gameCallback)
-//            Text("Hello")
         }
         .ignoresSafeArea()
     }

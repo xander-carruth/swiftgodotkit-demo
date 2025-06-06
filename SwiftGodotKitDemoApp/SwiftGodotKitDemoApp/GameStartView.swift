@@ -20,6 +20,7 @@ struct GameStartView: View {
         }
         .ignoresSafeArea()
         .onAppear {
+            // Navigate back when back button from settings menu in-game is pressed
             GodotSwiftMessenger.shared.gameEnded.connect {
                 if !navModel.path.isEmpty {
                     navModel.path.removeLast()

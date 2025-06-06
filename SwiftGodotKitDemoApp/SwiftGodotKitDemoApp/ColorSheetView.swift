@@ -16,15 +16,11 @@ struct ColorSheetView: View {
     
     private func convertColor(name: String) -> Color {
         switch name.lowercased() {
-        case "green":   return .green
-        case "pink":    return .pink
-        case "yellow": return .yellow
-        case "blue": return .teal
-        default: return .white
+            case "green":   return .green
+            case "pink":    return .pink
+            case "yellow": return .yellow
+            case "blue": return .teal
+            default: return .white
         }
     }
-}
-
-#Preview {
-    ColorSheetView(colorName: "Pink")
 }
