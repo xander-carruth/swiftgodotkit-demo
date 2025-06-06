@@ -10,14 +10,14 @@ import SwiftGodot
 import SwiftGodotKit
 
 struct GodotSceneWindowView: View {
-    let sceneName: String
+    let scenePath: String
     
     @SwiftUI.Environment(\.godotApp) private var godotApp: GodotApp?
     @State private var loading = true
     private var token: String
     
-    init(sceneName: String) {
-        self.sceneName = sceneName
+    init(scenePath: String) {
+        self.scenePath = scenePath
         self.token = UUID().uuidString
     }
     
@@ -67,7 +67,7 @@ struct GodotSceneWindowView: View {
         }
 
         // Instance the scene and add to the viewport
-        if let packed = ResourceLoader.load(path: sceneName) as? PackedScene,
+        if let packed = ResourceLoader.load(path: scenePath) as? PackedScene,
            let root = packed.instantiate() {
             root.set(property: "ready_token", value: Variant(token))
             vp.addChild(node: root)

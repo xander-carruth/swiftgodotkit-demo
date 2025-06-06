@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://crfld0rtef5ge"]
+[gd_scene load_steps=16 format=3 uid="uid://crfld0rtef5ge"]
 
+[ext_resource type="Script" uid="uid://csvtun8apxx7s" path="res://src/Shared/WindowScene.gd" id="1_fm68c"]
 [ext_resource type="PackedScene" uid="uid://dgtqpca2xvdgk" path="res://src/SelectableSquares/HUD.tscn" id="1_ok3ug"]
 [ext_resource type="Script" uid="uid://baamqwcgnyi8" path="res://src/SelectableSquares/PanelIndicator.gd" id="2_fm68c"]
 [ext_resource type="Script" uid="uid://pvk15iugeiuq" path="res://src/SelectableSquares/CameraMotion.gd" id="3_tkujn"]
@@ -37,7 +38,7 @@ albedo_color = Color(1, 1, 0.0313726, 1)
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_iir56"]
 
 [node name="Node3D" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000896573, 0, 0.000990868)
+script = ExtResource("1_fm68c")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_abvlt")

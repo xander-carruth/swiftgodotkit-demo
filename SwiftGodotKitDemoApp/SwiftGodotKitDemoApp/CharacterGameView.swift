@@ -10,6 +10,6 @@ import SwiftUI
 struct CharacterGameView: View {
     
     var body: some View {
-        GodotSceneWindowView(sceneName: "res://src/CharacterGameplay/CharacterGameplay.tscn")
+        GodotSceneWindowView(scenePath: "res://src/CharacterGameplay/CharacterGameplay.tscn")
     }
 }

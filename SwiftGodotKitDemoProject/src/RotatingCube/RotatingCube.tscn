@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwt2av518a835"]
+[gd_scene load_steps=8 format=3 uid="uid://cwt2av518a835"]
 
 [ext_resource type="Script" uid="uid://ddx4ljiaoy4w1" path="res://src/RotatingCube/RotateCube.gd" id="1_42nb1"]
+[ext_resource type="Script" uid="uid://csvtun8apxx7s" path="res://src/Shared/WindowScene.gd" id="1_mnsjn"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_42nb1"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,6 +22,7 @@ glow_enabled = true
 albedo_color = Color(1, 0.0470588, 1, 1)
 
 [node name="RotatingCube" type="Node3D"]
+script = ExtResource("1_mnsjn")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mnl6h")

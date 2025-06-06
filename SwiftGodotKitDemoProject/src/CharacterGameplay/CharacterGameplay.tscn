@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://wcgiq24agu33"]
 
 [ext_resource type="PackedScene" uid="uid://c7glvstpp06ak" path="res://src/CharacterGameplay/Character.tscn" id="1_3ksj4"]
-[ext_resource type="Script" uid="uid://csvtun8apxx7s" path="res://src/CharacterGameplay/WindowScene.gd" id="1_fn2i5"]
+[ext_resource type="Script" uid="uid://csvtun8apxx7s" path="res://src/Shared/WindowScene.gd" id="1_fn2i5"]
 [ext_resource type="Script" uid="uid://d3tkjykkbcgt0" path="res://src/CharacterGameplay/Character.gd" id="2_lwmuc"]
 [ext_resource type="PackedScene" uid="uid://yby1jaejm40t" path="res://src/CharacterGameplay/PlayerHUD.tscn" id="3_lwmuc"]
 
