@@ -13,4 +13,5 @@ class GodotSwiftMessenger: Object {
     @Signal var panelSelected: SignalWithArguments<String>
     @Signal var gameEnded: SimpleSignal
     @Signal var changeCubeColor: SignalWithArguments<Int>
+    @Signal var sceneReady: SignalWithArguments<String>
 }
