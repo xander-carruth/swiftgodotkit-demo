@@ -48,9 +48,11 @@ struct RotatingCubeView: View {
                 colorChangeCount += 1
                 GodotSwiftMessenger.shared.changeCubeColor.emit(colorChangeCount)
             }
+            .padding(5)
+            .background(Color.gray)
+            .padding(5)
             GodotWindow(callback: rotatingCubeCallback)
-            //            Text("Hello")
+            GodotWindow(callback: rotatingCubeCallback)
         }
-        .ignoresSafeArea()
     }
 }

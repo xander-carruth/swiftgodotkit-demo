@@ -11,10 +11,11 @@
 script = ExtResource("1_s0hck")
 
 [node name="Virtual Joystick" parent="." instance=ExtResource("1_3j41j")]
-offset_left = 738.0
-offset_top = -832.0
-offset_right = 1038.0
-offset_bottom = -532.0
+offset_left = 696.0
+offset_top = -868.0
+offset_right = 996.0
+offset_bottom = -568.0
+scale = Vector2(1.3, 1.3)
 
 [node name="SettingsButton" type="TouchScreenButton" parent="."]
 position = Vector2(764, 1324)
@@ -31,6 +32,7 @@ theme_override_font_sizes/font_size = 50
 text = "Settings"
 
 [node name="SettingsMenu" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1079.0
@@ -79,6 +81,7 @@ texture_normal = ExtResource("6_h0xte")
 texture_pressed = ExtResource("4_jcf1l")
 
 [node name="CloseMenuText" type="Label" parent="SettingsMenu"]
+layout_mode = 0
 offset_left = 283.0
 offset_top = 1429.0
 offset_right = 850.0
