@@ -1,4 +1,4 @@
-# A Swift Godot Kit Demo
+# A SwiftGodotKit Demo
 
 This demo contains an iOS application and a Godot project intended to showcase some of the use cases/ abilities of [SwiftGodotKit](https://github.com/migueldeicaza/SwiftGodotKit). To test out this demo, clone this repository and run the the SwiftGodotKitApp iOS application in XCode with your iOS device as the build destination. 
 
